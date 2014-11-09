@@ -31,7 +31,6 @@ public var autowalk:int=0;
 public var inhibit_autowalk=1;
 public var reload_once:int=0;
 
-
 function Awake () {
 	controller = GetComponent (CharacterController);
 	Debug.Log("Controller Slopelimit"+controller.slopeLimit);
@@ -114,7 +113,6 @@ function Die(){
 
 function Update () {
 
-
 if (velocity.y < fallkillspeed)Die();
 
 
@@ -122,7 +120,10 @@ Debug.DrawLine (transform.position, transform.position+groundNormal, Color.red);
 //print("GroundNormal y" +groundNormal.y);
 
 var directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-if (autowalk==1)directionVector=Vector3(0,0,1*inhibit_autowalk);
+if (autowalk==1){
+	directionVector=Vector3(Input.GetAxis("Horizontal"),0,1*inhibit_autowalk);
+}
+
 if (directionVector != Vector3.zero) {
 		// Get the length of the directon vector and then normalize it
 		// Dividing by the length is cheaper than normalizing when we already have the length anyway
@@ -142,9 +143,10 @@ if (directionVector != Vector3.zero) {
 		// Apply the direction to the CharacterMotor
 	inputMoveDirection =  directionVector;
 	//inputJump = Input.GetButton("Jump");
-    //inputJump = Input.GetMouseButtonDown(1);
-  	if (Input.touchCount == (2) ) inputJump = true;
-  	else inputJump = false;
+    inputJump = Input.GetMouseButtonDown(1);
+  	//if (Input.touchCount == (2) ) Die();
+  	//else inputJump = true;
+  	//inputJump = ((Input.touchCount == (2)) && Input.touches);
   	//Dive_Unity_Demoj
  				
 
