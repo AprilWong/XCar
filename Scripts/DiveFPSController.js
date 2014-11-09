@@ -21,13 +21,12 @@ public var jumpspeed=0.16;
 public var stopmovingup=false;
 public var fallkillspeed=-0.38;
 public var collisionFlags : CollisionFlags; 
+public var autowalk;
 
 public var ground_gameobject:GameObject=null;
 public var last_ground_pos:Vector3;
 //private var jumpcommand=0;
 public var floating=false;
-
-public var autowalk:int=0;
 public var inhibit_autowalk=1;
 public var reload_once:int=0;
 
@@ -35,18 +34,6 @@ function Awake () {
 	controller = GetComponent (CharacterController);
 	Debug.Log("Controller Slopelimit"+controller.slopeLimit);
 }
-
-function toggle_autowalk(){
-	if (autowalk==0)autowalk=1;
-	else autowalk=0;
-
-}
-
-//function JumpUp(){
-
-//jumpcommand=1;
-
-//}
 
 
 function Start () {
@@ -120,9 +107,7 @@ Debug.DrawLine (transform.position, transform.position+groundNormal, Color.red);
 //print("GroundNormal y" +groundNormal.y);
 
 var directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-if (autowalk==1){
-	directionVector=Vector3(Input.GetAxis("Horizontal"),0,1*inhibit_autowalk);
-}
+if(autowalk == 1) directionVector=Vector3(Input.GetAxis("Horizontal"),0,1*inhibit_autowalk);
 
 if (directionVector != Vector3.zero) {
 		// Get the length of the directon vector and then normalize it
