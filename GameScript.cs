@@ -7,11 +7,10 @@ public class GameScript : MonoBehaviour {
 	public float timeLeft;
 	Text txt;
 
-
 	// Use this for initialization
 	void Start () {
 		txt = gameObject.GetComponent<Text> ();
-		timeLeft = 300.0f;
+		timeLeft = 200.0f;
 		txt.text = "Time:" + timeLeft;
 	}
 	
