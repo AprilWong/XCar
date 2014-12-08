@@ -7,7 +7,7 @@ var inputJump=false;
 var grounded=false;
 var downmovement=0.1;
 var velocity:Vector3;
-public var max_speed=0.1;
+public var max_speed=10;
 public var max_speed_air=0.13;
 public var max_speed_ground=0.1;
 public var acceleration=10;
